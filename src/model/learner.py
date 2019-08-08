@@ -11,9 +11,11 @@ import resource
 import numpy as np
 from model.util import EPS
 
+
 def memory():
     usage=resource.getrusage(resource.RUSAGE_SELF)
     return (usage[2]*resource.getpagesize()) / 1000000.0
+
 
 def add_learner_arguments(parser):
     parser.add_argument('--optimizer', default='sgd', help='Optimization method')
@@ -27,10 +29,12 @@ def add_learner_arguments(parser):
     parser.add_argument('--checkpoint', default='.', help='Directory to save learned models')
     parser.add_argument('--gpu', type=int, default=0, help='Use GPU or not')
 
+
 optim = {'adagrad': tf.train.AdagradOptimizer,
          'sgd': tf.train.GradientDescentOptimizer,
          'adam': tf.train.AdamOptimizer,
         }
+
 
 class Learner(object):
     def __init__(self, data, model, evaluator, batch_size=1, verbose=False):

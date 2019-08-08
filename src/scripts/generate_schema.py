@@ -5,9 +5,11 @@ import json
 import re
 import os
 
+
 def clean(s):
     s = re.sub(r'\([^)]*\)', '', s)
     return s.strip()
+
 
 def scrape(link, xpath, cache):
     cached_file = '%s/%s' % (cache, link.split('/')[-1])
@@ -22,6 +24,7 @@ def scrape(link, xpath, cache):
     nodes = tree.xpath(xpath)
     strings = [clean(node.text) for node in nodes if node.text]
     return [s for s in strings if not isinstance(s, unicode)]
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
