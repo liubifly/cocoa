@@ -10,3 +10,4 @@ Makefile
 web_output/*
 *.pdf
 .idea
+venv
