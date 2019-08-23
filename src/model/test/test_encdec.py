@@ -5,6 +5,7 @@ from numpy.testing import assert_array_equal
 from model.encdec import BasicEncoder, BasicDecoder, BasicEncoderDecoder, GraphEncoder, GraphDecoder, GraphEncoderDecoder
 from model.word_embedder import WordEmbedder
 
+
 class TestEncoderDecoder(object):
     rnn_size = 3
     batch_size = 2
@@ -17,7 +18,7 @@ class TestEncoderDecoder(object):
 
     @pytest.fixture(scope='session')
     def basic_encoder(self):
-        return BasicEncoder(self.rnn_size, batch_size=self.batch_size)
+        return BasicEncoder(self.rnn_size)
 
     @pytest.fixture(scope='session')
     def basic_input_dict(self):
@@ -41,7 +42,7 @@ class TestEncoderDecoder(object):
 
     @pytest.fixture(scope='session')
     def basic_decoder(self):
-        return BasicDecoder(self.rnn_size, self.num_symbols, batch_size=self.batch_size)
+        return BasicDecoder(self.rnn_size, self.num_symbols)
 
     def test_basic_decoder(self, basic_decoder, word_embedder, basic_input_dict, last_inds):
         output_dict = basic_decoder.build_model(basic_input_dict, word_embedder, time_major=False)
@@ -69,11 +70,11 @@ class TestEncoderDecoder(object):
 
     @pytest.fixture(scope='session')
     def graph_encoder(self, graph_embedder):
-        return GraphEncoder(self.rnn_size, graph_embedder, batch_size=self.batch_size)
+        return GraphEncoder(self.rnn_size, graph_embedder)
 
     @pytest.fixture(scope='session')
     def graph_decoder(self, graph_embedder):
-        return GraphDecoder(self.rnn_size, self.num_symbols, graph_embedder, batch_size=self.batch_size)
+        return GraphDecoder(self.rnn_size, self.num_symbols, graph_embedder)
 
     @pytest.fixture(scope='session')
     def graph_encoderdecoder(self, word_embedder, graph_embedder, graph_encoder, graph_decoder):

@@ -1,5 +1,6 @@
 import pytest
-from model.graph_embedder import GraphEmbedder, GraphEmbedderConfig
+from model.graph_embedder import GraphEmbedder
+from model.graph_embedder_config import GraphEmbedderConfig
 from model.graph import Graph, GraphMetadata, GraphBatch
 from basic.schema import Schema
 from basic.lexicon import Lexicon
@@ -16,7 +17,7 @@ def config(metadata):
     utterance_size = metadata.utterance_size
     feat_size = metadata.feat_size
     batch_size = 2
-    return GraphEmbedderConfig(num_edge_labels, node_embed_size, edge_embed_size, utterance_size, feat_size, batch_size=batch_size, max_degree=max_degree)
+    return GraphEmbedderConfig(num_edge_labels, node_embed_size, edge_embed_size, utterance_size, feat_size)
 
 @pytest.fixture(scope='session')
 def graph_embedder(config):

@@ -4,7 +4,7 @@ RNN cell with attention over an input context.
 
 import tensorflow as tf
 from tensorflow.python.ops.math_ops import tanh
-from tensorflow.python.ops.rnn_cell import _linear as linear
+from tensorflow.contrib.rnn.python.ops.core_rnn_cell import _linear as linear
 from src.model.util import batch_linear, batch_embedding_lookup, EPS
 
 def add_attention_arguments(parser):
@@ -18,6 +18,7 @@ recurrent_cell = {'rnn': tf.nn.rnn_cell.BasicRNNCell,
                  }
 
 activation = tf.tanh
+
 
 def build_rnn_cell(rnn_type, rnn_size, num_layers, keep_prob):
     '''
@@ -34,6 +35,7 @@ def build_rnn_cell(rnn_type, rnn_size, num_layers, keep_prob):
     else:
         cell = tf.nn.rnn_cell.DropoutWrapper(cell, input_keep_prob=keep_prob, output_keep_prob=keep_prob)
     return cell
+
 
 class AttnRNNCell(object):
     '''

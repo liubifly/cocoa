@@ -33,8 +33,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Names
-    p = ".//*[@id='content']/table/tr/td[2]/table/tbody/tr[position()<last()]/td"
-    xpath = "%s[%d] | %s[%d]" % (p, 2, p, 4)
+    xpath = ".//*[@id='content']//table//tr[position()<last()]//td[2] | .//*[@id='content']//table//tr//td[4]"
     names = scrape('https://www.ssa.gov/oact/babynames/decades/century.html', xpath, args.cache_path)
     print '%d names' % len(names)
 

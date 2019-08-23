@@ -119,6 +119,7 @@ class Sampler(object):
         exp_x = np.exp(logits / t)
         return exp_x / np.sum(exp_x, axis=2, keepdims=True)
 
+
 class BasicEncoder(object):
     '''
     A basic RNN encoder.
